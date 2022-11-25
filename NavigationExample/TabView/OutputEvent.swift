@@ -10,4 +10,5 @@ import Foundation
 enum OutputEvent: Hashable {
     case didTapDetails(String)
     case didTapSettings
+    case didTapLogout
 }

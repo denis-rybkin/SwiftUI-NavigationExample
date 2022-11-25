@@ -22,6 +22,11 @@ struct ProfileView: View {
             Button("Settings") {
                 output(.didTapSettings)
             }
+            Spacer()
+                .frame(height: 15)
+            Button("Logout") {
+                output(.didTapLogout)
+            }
         }
             .padding()
             .background(.blue.opacity(0.3))

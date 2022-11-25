@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TabViewContainer: View {
     
+    let output: () -> Void
+    
     @State var stack: [OutputEvent] = []
     
     var body: some View {
@@ -27,7 +29,7 @@ struct TabViewContainer: View {
                         Label("Favorite", systemImage: "heart")
                     }
                 ProfileView { event in
-                    stack.append(event)
+                    screenOutput(event)
                 }
                     .tabItem {
                         Label("Profile", systemImage: "person")
@@ -39,20 +41,30 @@ struct TabViewContainer: View {
                         DetailsView(details: details)
                     case .didTapSettings:
                         SettingsView()
+                    case .didTapLogout:
+                        EmptyView()
                     }
                 }
+        }
+    }
+    
+    private func screenOutput(_ output: OutputEvent) {
+        if output == .didTapLogout {
+            self.output()
+        } else {
+            stack.append(output)
         }
     }
 }
 
 struct TabView_Previews: PreviewProvider {
     static var previews: some View {
-        TabViewContainer()
+        TabViewContainer(output: {  })
     }
 }
 
 struct TabViewContainer_Previews: PreviewProvider {
     static var previews: some View {
-        TabViewContainer()
+        TabViewContainer(output: {  })
     }
 }

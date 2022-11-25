@@ -20,7 +20,7 @@ struct RootContainerView: View {
         case .login:
             LoginNavigationContainer(output: didLogin)
         case .tabView:
-            TabViewContainer()
+            TabViewContainer(output: didLogout)
                 .transition(.move(edge: .trailing))
         }
     }
@@ -28,6 +28,12 @@ struct RootContainerView: View {
     private func didLogin() {
         withAnimation {
             root = .tabView
+        }
+    }
+    
+    private func didLogout() {
+        withAnimation {
+            root = .login
         }
     }
     
